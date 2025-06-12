@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compress Images Online — Free, Unlimited JPG & PNG Compressor</title>
+    <meta name="description" content="Fast, private, and free online image compressor for JPG, PNG, and GIF. Your files never leave your device. Optimize images for web, email, and forms instantly.">
+    <meta name="keywords" content="image compressor, compress image, online image compressor, free image compressor, JPG compressor, PNG compressor, GIF compressor, reduce image size, image optimizer, private image compressor" />
+    <meta name="robots" content="index, follow" />
+    <!-- <link rel="canonical" href="https://www.imagecompressor.ai/" />  -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- Tailwind CSS CDN (For development/sandbox only - will be replaced in production build) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom CSS and Animations for responsiveness and styling */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+        /* Custom styles for the range slider thumb */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--webkit-slider-thumb-bg, #6366f1);
+            cursor: pointer;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3);
+            transition: background .15s ease-in-out;
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--moz-range-thumb-bg, #6366f1);
+            cursor: pointer;
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.3);
+            transition: background .15s ease-in-out;
+        }
+        input[type="range"]:hover::-webkit-slider-thumb {
+            background: #4f46e5;
+        }
+        input[type="range"]:hover::-moz-range-thumb {
+            background: #4f46e5;
+        }
+
+        /* Custom animations for various UI elements */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-slide-in-up {
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        /* Animation for image preview on upload (immediately visible) */
+        @keyframes fadeInScale {
+            from { transform: scale(0.95); } /* Start slightly scaled down */
+            to { transform: scale(1); } /* End at normal size */
+        }
+        .animate-fade-in-scale {
+            animation: fadeInScale 0.3s ease-out forwards;
+            opacity: 1; /* Ensure it's visible immediately */
+        }
+
+        /* Toast notification animation - fades in from top-right */
+        @keyframes fade-in-down {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down {
+            animation: fade-in-down 0.5s ease-out;
+        }
+    </style>
+    <!-- Compressor.js CDN - IMPORTANT: This should be loaded BEFORE your React app script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.2.1/compressor.min.js"></script>
+</head>
+<body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div> <!-- This is where your React app will mount -->
+
+    <!-- IMPORTANT: This script loads your React application's main entry point -->
+    <script type="module" src="/src/main.jsx"></script>
+</body>
+</html>
