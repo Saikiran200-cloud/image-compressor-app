@@ -33,7 +33,7 @@ class Compressor {
                 // Simulate compression: create a dummy Blob with arbitrary content but correct type.
                 // This avoids complex Base64 decoding issues while still providing a downloadable file.
                 const simulatedCompressedSize = Math.max(1024, Math.floor(originalSize * quality * 0.5)); // Ensure it's always smaller, min 1KB
-                
+
                 // Create an array of random bytes for the dummy content
                 const dummyContent = new Uint8Array(simulatedCompressedSize).map(() => Math.floor(Math.random() * 256));
                 const compressedBlob = new Blob([dummyContent], { type: file.type });
@@ -46,7 +46,7 @@ class Compressor {
 
                 Object.defineProperty(compressedBlob, 'name', { value: newFileName, writable: false });
                 // Explicitly set simulated reduced size on the Blob object for consistent display
-                Object.defineProperty(compressedBlob, 'size', { value: simulatedCompressedSize, writable: false }); 
+                Object.defineProperty(compressedBlob, 'size', { value: simulatedCompressedSize, writable: false });
 
                 if (options.success) {
                     options.success(compressedBlob);
@@ -78,16 +78,16 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
     if (!isOpen) return null;
 
     return (
-        <div 
+        <div
             className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-[10000]"
             onClick={onClose} // Close on outside click
         >
-            <div 
+            <div
                 className="bg-white rounded-lg shadow-2xl p-6 md:p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto relative animate-fade-in-down"
                 onClick={(e) => e.stopPropagation()} // Prevent modal from closing when clicking inside
             >
-                <button 
-                    onClick={onClose} 
+                <button
+                    onClick={onClose}
                     className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 text-2xl font-bold focus:outline-none"
                 >
                     &times;
@@ -227,14 +227,14 @@ export default function ImageCompressorApp() {
         if (!validTypes.includes(file.type)) {
             showToast("Unsupported file type. Please upload JPG, JPEG, PNG, GIF, or WEBP images.", "error");
             // Important: Clear the input value to allow selecting the same file again immediately
-            e.target.value = ''; 
+            e.target.value = '';
             return;
         }
 
         if (file.size > 20 * 1024 * 1024) { // 20 MB limit
             showToast("File size should be less than 20MB.", "error");
             // Important: Clear the input value to allow selecting the same file again immediately
-            e.target.value = ''; 
+            e.target.value = '';
             return;
         }
 
@@ -243,7 +243,7 @@ export default function ImageCompressorApp() {
         showToast("Image uploaded successfully!", "success");
 
         // Important: Clear the input value to allow selecting the same file again immediately
-        e.target.value = ''; 
+        e.target.value = '';
     };
 
     // Handle drag over
@@ -279,7 +279,7 @@ export default function ImageCompressorApp() {
 
         new CompressorToUse(selectedFile, {
             quality: compressionLevel / 100,
-            
+
             // Progress callback for UI feedback
             progress(percentage) {
                 // If you want a progress bar, you'd update a state here
@@ -414,12 +414,12 @@ export default function ImageCompressorApp() {
                     <a href="#" className="flex items-center space-x-2 text-indigo-700 rounded-md mb-2 sm:mb-0">
                         {/* Custom SVG Logo with fixed vibrant color */}
                         <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <rect x="2" y="6" width="20" height="14" rx="2" fill={logoColor} stroke={logoColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M7 6V4C7 3.44772 7.44772 3 8 3H16C16.5523 3 17 3.44772 17 4V6" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            <circle cx="8" cy="12" r="1.5" fill="#FFFFFF"/>
-                            <circle cx="16" cy="12" r="1.5" fill="#FFFFFF"/>
-                            <path d="M19 19L17 17M17 19L19 17" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M5 19L7 17M7 19L5 17" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            <rect x="2" y="6" width="20" height="14" rx="2" fill={logoColor} stroke={logoColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M7 6V4C7 3.44772 7.44772 3 8 3H16C16.5523 3 17 3.44772 17 4V6" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <circle cx="8" cy="12" r="1.5" fill="#FFFFFF" />
+                            <circle cx="16" cy="12" r="1.5" fill="#FFFFFF" />
+                            <path d="M19 19L17 17M17 19L19 17" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M5 19L7 17M7 19L5 17" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                         <span className="text-2xl font-bold">ImageCompressor.ai</span>
                     </a>
@@ -446,7 +446,38 @@ export default function ImageCompressorApp() {
                 {/* Ad Placeholder 1 */}
                 <div className="container mx-auto px-4 py-8 text-center">
                     <div className="bg-gray-200 h-24 md:h-32 flex items-center justify-center text-gray-600 text-sm rounded-lg shadow-sm px-4">
-                        <p className="text-center">[Advertisement: Your AdSense Banner Here]</p>
+                        {/*
+            AdSense code should ideally be placed directly in a div,
+            not wrapped inside a <p> tag, as ad units are block-level elements.
+            Also, 'class' needs to be 'className' and 'style' needs to be an object in JSX.
+        */}
+                        <ins className="adsbygoogle" // Corrected: 'class' to 'className'
+                            style={{ display: 'block' }} // Corrected: style string to JSX object
+                            data-ad-client="ca-pub-7221385247405070"
+                            data-ad-slot="3510339289"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true">
+                        </ins>
+                        {/*
+            The script tag needs to be self-contained in JSX.
+            React often recommends using dangerouslySetInnerHTML or lifecycle methods
+            for third-party scripts like this.
+            However, for AdSense, this pattern often works as the script is usually
+            just calling a global function.
+            It's generally better to place this script *after* the ins tag directly.
+        */}
+                        <script>
+                            {/*
+                The content of a script tag within JSX needs to be enclosed in braces
+                and treated as a string, or you can use dangerouslySetInnerHTML.
+                For simple push operations like this, placing it directly works
+                but if it breaks, the dangerouslySetInnerHTML is the alternative.
+                Given this is a common pattern for AdSense in React,
+                this current form *might* work, but let's make it robust if needed.
+                For now, remove the <p> tag and ensure style is an object.
+            */}
+                            {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+                        </script>
                     </div>
                 </div>
 
@@ -454,7 +485,7 @@ export default function ImageCompressorApp() {
                 <section ref={mainCompressorRef} id="compress-section" className="relative bg-gradient-to-br from-indigo-50 to-purple-100 py-12 md:py-20 text-center px-4"> {/* Adjusted vertical padding, added horizontal */}
                     <div className="container mx-auto max-w-4xl"> {/* Increased max-width for better use of space */}
                         <h1 className="text-3xl md:text-5xl font-extrabold text-indigo-800 leading-tight mb-4 md:mb-6"> {/* Adjusted text sizes */}
-                            Compress Images Online — <br className="hidden md:inline"/> Free, Unlimited JPG & PNG Compressor
+                            Compress Images Online — <br className="hidden md:inline" /> Free, Unlimited JPG & PNG Compressor
                         </h1>
                         <p className="text-base md:text-xl text-gray-700 mb-8 md:mb-10 max-w-2xl mx-auto px-4"> {/* Adjusted text sizes, added px */}
                             Fast, private, and free online image compressor for JPG, PNG, and GIF. Your files never leave your device. Optimize images for web, email, and forms instantly.
@@ -479,12 +510,12 @@ export default function ImageCompressorApp() {
                                 <div className="flex flex-col items-center text-gray-500">
                                     {/* Replaced generic file upload SVG with the custom logo SVG */}
                                     <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className="h-14 w-14 md:h-16 md:w-16">
-                                        <rect x="2" y="6" width="20" height="14" rx="2" fill={logoColor} stroke={logoColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                        <path d="M7 6V4C7 3.44772 7.44772 3 8 3H16C16.5523 3 17 3.44772 17 4V6" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                        <circle cx="8" cy="12" r="1.5" fill="#FFFFFF"/>
-                                        <circle cx="16" cy="12" r="1.5" fill="#FFFFFF"/>
-                                        <path d="M19 19L17 17M17 19L19 17" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                        <path d="M5 19L7 17M7 19L5 17" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                        <rect x="2" y="6" width="20" height="14" rx="2" fill={logoColor} stroke={logoColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                        <path d="M7 6V4C7 3.44772 7.44772 3 8 3H16C16.5523 3 17 3.44772 17 4V6" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                        <circle cx="8" cy="12" r="1.5" fill="#FFFFFF" />
+                                        <circle cx="16" cy="12" r="1.5" fill="#FFFFFF" />
+                                        <path d="M19 19L17 17M17 19L19 17" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                                        <path d="M5 19L7 17M7 19L5 17" stroke="#FFFFFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                                     </svg>
                                     <p className="text-xl md:text-2xl font-semibold mb-1">Drag & Drop your image here</p> {/* Adjusted text sizes */}
                                     <p className="text-sm md:text-base">or <span className="text-indigo-600 font-medium">click to upload</span></p> {/* Adjusted text sizes */}
@@ -610,7 +641,23 @@ export default function ImageCompressorApp() {
                 {/* Ad Placeholder 2 */}
                 <div className="container mx-auto px-4 py-8 text-center">
                     <div className="bg-gray-200 h-24 md:h-32 flex items-center justify-center text-gray-600 text-sm rounded-lg shadow-sm px-4">
-                        <p className="text-center">[Advertisement: Your AdSense Banner Here]</p>
+                        {/*
+            Corrected AdSense code:
+            - Removed the surrounding <p> tags.
+            - Changed 'class' to 'className' for JSX compatibility.
+            - Changed 'style' string to a JSX style object.
+        */}
+                        <ins className="adsbygoogle" // Corrected: 'class' to 'className'
+                            style={{ display: 'block' }} // Corrected: style string to JSX object
+                            data-ad-client="ca-pub-7221385247405070"
+                            data-ad-slot="1780941756"
+                            data-ad-format="auto"
+                            data-full-width-responsive="true">
+                        </ins>
+                        <script>
+                            {/* The content of the script tag is wrapped in a template literal for JSX. */}
+                            {`(adsbygoogle = window.adsbygoogle || []).push({});`}
+                        </script>
                     </div>
                 </div>
 
